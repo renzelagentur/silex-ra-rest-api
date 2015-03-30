@@ -1,0 +1,22 @@
+{
+    "name": "ra/silex-rest-api",
+    "description": "Silex based REST API, which can be used to retrieve data from arbitrary systems to feed into the renzel.agentur Admin, for search and the SEO tool",
+    "require": {
+        "silex/silex": "~1.2",
+        "doctrine/dbal": "~2.5"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Christian Loock",
+            "email": "chl@vkf-renzel.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-0": {
+            "RA\\SilexRestApi": "Classes"
+        }
+    }
+}
