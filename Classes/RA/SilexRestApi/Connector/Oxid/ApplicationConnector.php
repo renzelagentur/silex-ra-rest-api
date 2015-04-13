@@ -33,7 +33,7 @@ class ApplicationConnector implements ApplicationConnectorInterface {
     {
         // load oxid bootstrap to load oxid framework
         if (file_exists(CONNECTED_APP_ROOT . 'bootstrap.php')) {
-            include CONNECTED_APP_ROOT . 'bootstrap.php';
+            @include CONNECTED_APP_ROOT . 'bootstrap.php';
         } else {
             throw new \RuntimeException('Cannot load Oxid config, without knowing where the oxid root is. Plase make sure that CONNECTED_APP_ROOT is defined');
         }

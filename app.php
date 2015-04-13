@@ -1,27 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chl
- * Date: 23.03.15
- * Time: 12:32
- */
-
-define('CONNECTED_APP', 'Oxid');
-define('CONNECTED_APP_ROOT', __DIR__ . '/../');
 
 use RA\SilexRestApi\Connector\ConnectorServiceProvider;
 use RA\SilexRestApi\Connector\DataConnectorFactory;
-use RA\SilexRestApi\Connector\Oxid\ApplicationConnector;
-use RA\SilexRestApi\Connector\Oxid\DefaultProductFilter;
-use RA\SilexRestApi\Connector\Oxid\CategoryConnector;
 use RA\SilexRestApi\Controller\CategoryController;
 use RA\SilexRestApi\Controller\ProductController;
 use RA\SilexRestApi\Filter\Builder\RequestFilterBuilder;
 use RA\SilexRestApi\Provider\CategoryControllerProvider;
 use RA\SilexRestApi\Provider\ProductControllerProvider;
 use Symfony\Component\HttpFoundation\Request;
-
-require __DIR__ . '/vendor/autoload.php';
 
 $app = new Silex\Application();
 // register to use controller as service
@@ -55,8 +41,14 @@ $app['controller.categoryController'] = $app->share(function() use ($app) {
 
 
 //////////////////////////////////////////////////////////////////////////
-// SERVICE DEFINIITION END                                              //
+// SERVICE DEFINITION END                                              //
 //////////////////////////////////////////////////////////////////////////
+
+// Workarround for Oxid's autoloader throwing warnings
+ini_set('display_errors', 'off');
+if (function_exists('xdebug_disable')) {
+    xdebug_disable();
+}
 
 $app->mount('/products', new ProductControllerProvider());
 $app->mount('/categories', new CategoryControllerProvider());
