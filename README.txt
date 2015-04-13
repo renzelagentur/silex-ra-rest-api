@@ -15,3 +15,5 @@ The autloader of composer must be inlcuded
 Also make sure, to include app.php from this package like:
 
 include 'vendor/ra/rest/app.php'
+
+4. Copy either the .htaccess file or the content of it, to a .htaccess file that resides inside the same directory as your rest entry script
