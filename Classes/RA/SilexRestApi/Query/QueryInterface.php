@@ -17,6 +17,8 @@ interface QueryInterface {
 
     public function setFilter(FilterInterface $filter);
 
+    public function setPagination($itemsPerPage = 0, $page = 0);
+
     public function generate();
 
 } 

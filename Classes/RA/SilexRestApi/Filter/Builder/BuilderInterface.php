@@ -16,6 +16,6 @@ interface BuilderInterface {
     /**
      * @return FilterInterface
      */
-    public function build();
+    public function build(FilterInterface $default = NULL);
 
 } 

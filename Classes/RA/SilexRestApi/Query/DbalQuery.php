@@ -56,6 +56,19 @@ class DbalQuery implements QueryInterface {
         $this->queryBuilder->where($this->convertConstraint($filter->getRootConstraint()));
     }
 
+    /**
+     * @param int $itemsPerPage
+     */
+    public function setPagination($itemsPerPage = 0, $page = 0)
+    {
+        if ($itemsPerPage > 0) {
+            $this->queryBuilder->setMaxResults($itemsPerPage);
+        }
+
+        if ($page > 1 && $itemsPerPage > 0) {
+            $this->queryBuilder->setFirstResult(($page * $itemsPerPage) - $itemsPerPage);
+        }
+    }
 
     /**
      * Generates the query

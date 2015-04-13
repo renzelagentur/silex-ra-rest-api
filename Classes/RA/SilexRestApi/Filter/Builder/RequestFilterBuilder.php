@@ -20,14 +20,32 @@ class RequestFilterBuilder implements BuilderInterface {
     /**
      * @return FilterInterface
      */
-    public function build()
+    public function build(FilterInterface $default = NULL)
     {
-        $filter = new Filter();
+        if ($default !== NULL) {
+            $filter = $default;
+        } else {
+            $filter = new Filter();
+        }
 
         if ($this->request->get('filter') !== NULL) {
-
-        } else {
-            return null;
+            // TODO: Implement stuff here.
         }
+
+        if ($this->request->get('itemsPerPage') !== NULL) {
+            $itemsPerPage = (int) $this->request->get('itemsPerPage');
+        } else {
+            $itemsPerPage = 0;
+        }
+
+        if ($this->request->get('page') !== NULL) {
+            $page = (int) $this->request->get('page');
+        } else {
+            $page = 1;
+        }
+
+        $filter->setPagination($itemsPerPage, $page);
+
+        return $filter;
     }
 }

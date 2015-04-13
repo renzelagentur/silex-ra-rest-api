@@ -15,4 +15,10 @@ interface FilterInterface {
 
     public function getRootConstraint();
 
+    public function setPagination($itemsPerPage = 0, $page = 0);
+
+    public function getItemsPerPage();
+
+    public function getPage();
+
 } 

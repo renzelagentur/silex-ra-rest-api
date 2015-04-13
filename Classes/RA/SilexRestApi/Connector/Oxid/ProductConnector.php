@@ -77,6 +77,7 @@ class ProductConnector implements ProductConnectorInterface, StreamingConnectorI
         if ($filter !== null) {
             $query->setFilter($filter);
         }
+        $query->setPagination($filter->getItemsPerPage(), $filter->getPage());
 
         $stmnt =  $query->generate()->execute();
         $rows = array();

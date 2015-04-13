@@ -63,9 +63,10 @@ class ProductController {
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getProductsAction(Application $app) {
-        $filter = $this->filterBuilder->build();
-        if ($filter === NULL && $app['filter.defaults.product'] !== NULL) {
-            $filter = $app['filter.defaults.product'];
+        if ($app['filter.defaults.product'] !== NULL) {
+            $filter = $this->filterBuilder->build($app['filter.defaults.product']);
+        } else {
+            $filter = $this->filterBuilder->build();
         }
 
         if ($this->productConnector instanceof \RA\SilexRestApi\Connector\StreamingConnectorInterface) {

@@ -63,9 +63,10 @@ class CategoryController {
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getCategoriesAction(Application $app) {
-        $filter = $this->filterBuilder->build();
-        if ($filter === NULL &&  $app['filter.defaults.category'] !== NULL) {
-            $filter = $app['filter.defaults.category'];
+        if ($app['filter.defaults.category'] !== NULL) {
+            $filter = $this->filterBuilder->build($app['filter.defaults.category']);
+        } else {
+            $filter = $this->filterBuilder->build();
         }
 
         if ($this->categoryConnector instanceof \RA\SilexRestApi\Connector\StreamingConnectorInterface) {
