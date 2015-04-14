@@ -56,6 +56,7 @@ class CategoryConnector implements CategoryConnectorInterface, StreamingConnecto
             $query->setFilter($filter);
         }
 
+
         $stmnt =  $query->generate()->execute();
 
         return $stmnt->fetch();
@@ -74,6 +75,7 @@ class CategoryConnector implements CategoryConnectorInterface, StreamingConnecto
             $query->setFilter($filter);
         }
 
+        $query->setPagination($filter->getItemsPerPage(), $filter->getPage());
         $stmnt =  $query->generate()->execute();
         $rows = array();
 

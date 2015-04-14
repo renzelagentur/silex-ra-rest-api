@@ -49,8 +49,8 @@ class ApplicationConnector implements ApplicationConnectorInterface {
                 )
             ));
 
-        $this->setClient(0);
-        $this->setLanguage(1);
+        $this->setClient($app['request']->get('client', 0));
+        $this->setLanguage($app['request']->get('language', 0));
     }
 
     /**
