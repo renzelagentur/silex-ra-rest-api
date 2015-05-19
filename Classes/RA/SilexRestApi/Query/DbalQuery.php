@@ -53,7 +53,9 @@ class DbalQuery implements QueryInterface {
      */
     public function setFilter(FilterInterface $filter)
     {
-        $this->queryBuilder->where($this->convertConstraint($filter->getRootConstraint()));
+        if ($filter->getRootConstraint() !== NULL) {
+            $this->queryBuilder->where($this->convertConstraint($filter->getRootConstraint()));
+        }
     }
 
     /**

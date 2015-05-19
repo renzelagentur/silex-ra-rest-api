@@ -16,8 +16,25 @@ abstract class AbstractLogicalConstraint implements LogicalConstraintInterface {
 
     protected $constraints;
 
+    /**
+     * Constructor that can take a variable amount of Constraints either as parameter list or as a single array
+     */
     public function __construct() {
         $numArgs = func_num_args();
+        if ($numArgs == 1) {
+            $argList = func_get_args();
+            if (is_array($argList[0])) {
+                foreach ($argList[0] as $arg) {
+                    if ($arg instanceof ConstraintInterface) {
+                        $this->addConstraint($arg);
+                    }
+                }
+
+                // When we used an array of arguments, further checks are no longer necessary
+                return;
+            }
+        }
+
         if ($numArgs > 0) {
             $argList = func_get_args();
             for ($i = 0; $i < $numArgs; $i++) {
