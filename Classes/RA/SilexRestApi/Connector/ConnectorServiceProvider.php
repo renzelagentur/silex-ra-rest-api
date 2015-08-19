@@ -37,7 +37,7 @@ class ConnectorServiceProvider implements ServiceProviderInterface {
         $app['filter.defaults.product'] = $app->share(function() use($app) {
                 $class = $this->getNamespacedClassName('DefaultProductFilter', $this->connectedApp);
                 if (class_exists($class)) {
-                    $defaultProductFilter =  new $class($app['request']->get('q', ''));
+                    $defaultProductFilter =  new $class();
                     if (isset($defaultProductFilter) && $defaultProductFilter instanceof FilterInterface) {
                         return $defaultProductFilter;
                     }
@@ -49,7 +49,7 @@ class ConnectorServiceProvider implements ServiceProviderInterface {
         $app['filter.defaults.category'] = $app->share(function() use($app) {
                 $class = $this->getNamespacedClassName('DefaultCategoryFilter', $this->connectedApp);
                 if (class_exists($class)) {
-                    $defaultProductFilter =  new $class($app['request']->get('q', ''));
+                    $defaultProductFilter =  new $class();
                     if (isset($defaultProductFilter) && $defaultProductFilter instanceof FilterInterface) {
                         return $defaultProductFilter;
                     }

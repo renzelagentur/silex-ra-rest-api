@@ -9,7 +9,13 @@
 namespace RA\SilexRestApi\Filter;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 interface FilterInterface {
+
+    public function setRequest(Request $request);
+
+    public function getRequest();
 
     public function setRootConstraint(ConstraintInterface $constraint);
 
